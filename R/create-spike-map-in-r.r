@@ -44,7 +44,12 @@ get_population_data()
 ### 2. LOAD DATA
 ### -------------
 load_file_name <- gsub(".gz", "", file_name)
-# Lambert projection
+
+# Lambert projection 
+# might not be the best solution for non-European countries
+# if it creates a skewed map, please use:
+# crsLONGLAT <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
 crsLAEA <- "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +datum=WGS84 +units=m +no_defs"
 get_population_data <- function() {
     pop_df <- sf::st_read(
